@@ -18,8 +18,6 @@ export const App = () => {
     setValue("");
   }
 
-  console.log('コンポーネントの再描画が発生しているかどうかのチェック')
-
   return (
     <>
       <input type="text" value={value} onChange={handleChange}/>
