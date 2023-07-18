@@ -1,5 +1,14 @@
 import React, { useState, ChangeEvent } from 'react';
 import './App.css';
+import TextField from '@mui/material/TextField/TextField';
+import Button from '@mui/material/Button/Button';
+import List from '@mui/material/List/List';
+import ListItem from '@mui/material/ListItem/ListItem';
+import Stack from '@mui/material/Stack';
+import ListItemButton from '@mui/material/ListItemButton';
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
+import ListItemText from '@mui/material/ListItemText';
 
 export const App = () => {
   const [value, setValue] = useState(""); 
@@ -13,17 +22,34 @@ export const App = () => {
     setText([...text, value]);
     setValue("");
   }
-
+  const handleItemClick = (item: string) => {
+    alert(item);
+  }
 
   return (
-    <>
-      <input type="text" value={value} onChange={handleChange} />
-      <button type="button" onClick={handleClick}>追加</button>
-      <ul>
-        {text.map((text, index) => (
-          <li key={index}>{text}</li>
-        ))}
-      </ul>
-    </>
+    <div className ="App">
+      <Container component="main" maxWidth="xs">
+    <Stack spacing={2}>
+      <TextField 
+      fullWidth
+      value={value} onChange={handleChange} />
+      <Button 
+      type="submit" 
+      fullWidth
+      size="large"
+      variant = "contained"
+      sx={{my:3}}
+      onClick={handleClick}>追加</Button>
+      
+       <List>
+          {text.map((item, index) => (
+            <ListItemButton key={index} onClick={() => handleItemClick(item)}>
+              <ListItemText>{item}</ListItemText>
+            </ListItemButton>
+          ))}
+        </List>
+      </Stack>
+      </Container>
+    </div>
   );
 };
